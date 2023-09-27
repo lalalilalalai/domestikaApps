@@ -2,6 +2,8 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    recording = false;
+
 
 	//If you don't have a webcam you can test with a video
 	//vidPlayer.load("finger.mov");
@@ -41,7 +43,15 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
 	ofSetFrameRate(60);
-
+    
+    if (recording) {
+        glReadBuffer(GL_FRONT);
+        
+//        ofSaveFrame(true);
+        ofSaveScreen(ofToString(ofGetFrameNum())+".png");
+//        ofSaveViewport(ofToString(ofGetFrameNum())+".png");
+    }
+    
 	bool bNewFrame = false;
 
 
@@ -135,12 +145,17 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-
+    if(key=='r'){
+        recording = true;
+    }
+    if(key=='c'){
+        recording = false;
+    }
 }
 
 //--------------------------------------------------------------
