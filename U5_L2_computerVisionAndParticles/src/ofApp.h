@@ -49,5 +49,6 @@ class ofApp : public ofBaseApp{
 		int camW;
 		int camH;
 
-		
+    bool recording;
+
 };
